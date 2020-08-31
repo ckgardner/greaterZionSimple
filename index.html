@@ -53,6 +53,70 @@
     <div id="app">
         <v-app>
             <v-main>
+                <!-- HOME -->
+                <div v-if="page=='home'" @click="showInstallMessage">
+                    <div id="headerImg">
+                        <div class="headerText">
+                            <h1>GREATER ZION REGION</h1>
+                        </div>
+                    </div>
+                    <div class="contentWrapper">
+                        <div class="homeItem" id="parking" @click="parkingClicked();">
+                            <p class="live">Live<img class="liveImg" src="icons/liveImg.svg"></p>
+                            <div class="homeText">
+                                <h2>Parking</h2>
+                            </div>
+                        </div>
+                        <div class="homeItem" id="entrances" @click="entrancesClicked();">
+                            <p class="live">Live<img class="liveImg" src="icons/liveImg.svg"></p>
+                            <div class="homeText">
+                                <h2>Entrances</h2>
+                            </div>
+                        </div>
+                        <div class="homeItem" id="shuttles" @click="shuttlesClicked()">
+                            <div class="homeText">
+                                <h2>Shuttles</h2>
+                            </div>
+                        </div>
+                        <div v-if="showInstallMessage" id="installContainer">
+                            <div style="float: left;">
+                                <img src="icons/plus.png" style="height: 25px; width: 25px; margin: 15px; margin-right: 5px; filter: invert(100%)">
+                            </div>
+                            <div style="display: inline-block; width: 80%">
+                                <p style="margin: 6px;">Install this webapp on your device: tap &nbsp;<img src="icons/saveBtn.png" style="height: 20px; width: 16px; vertical-align: middle;">&nbsp; then Add to homescreen.</p>
+                            </div>
+                            <div class="arrow-down"></div>
+                        </div>
+                        <div v-if="showAndroidInstallMessage" id="androidInstallContainer">
+                            <div style="float: left;">
+                                <img src="icons/plus.png" style="height: 25px; width: 25px; margin: 15px; margin-right: 5px; filter: invert(100%)">
+                            </div>
+                            <div style="display: inline-block; width: 80%">
+                                <p style="margin: 6px;">Install this webapp on your device: tap &nbsp;<img src="icons/hamburgerBtn.png" style="height: 14px; width: auto; vertical-align: middle;">&nbsp; then Add to homescreen.</p>
+                            </div>
+                            <div class="arrow-up"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOTTOM NAV -->
+                <div>
+                    <v-app-bar class="bottomNavBar">
+                        <v-btn text width="50%" height="55px" tile :class="{homeTabFocus: home_selected}" @click="page='home'; bottomNavImg('home');">
+                            <div >
+                                <img :src="homeImg" alt="home">
+                                <div>Home</div>
+                            </div>
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn text width="50%" height="55px" tile :class="{mapTabFocus: map_selected}" @click="page='map'; bottomNavImg('map');">
+                            <div>
+                                <img :src="mapImg" alt="map">
+                                <div>Map</div>
+                            </div>
+                        </v-btn>
+                    </v-app-bar>
+                </div>
             </v-main>
         </v-app>
     </div>
