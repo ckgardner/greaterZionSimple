@@ -54,7 +54,7 @@
         <v-app>
             <v-main>
                 <!-- HOME -->
-                <div v-if="page=='home'" @click="showInstallMessage">
+                <div v-if="page=='home'" @click="showInstallMessage=false">
                     <div id="headerImg">
                         <div class="headerText">
                             <h1>GREATER ZION REGION</h1>
@@ -64,18 +64,18 @@
                         <div class="homeItem" id="parking" @click="parkingClicked();">
                             <p class="live">Live<img class="liveImg" src="icons/liveImg.svg"></p>
                             <div class="homeText">
-                                <h2>Parking</h2>
+                                <h2>PARKING</h2>
                             </div>
                         </div>
                         <div class="homeItem" id="entrances" @click="entrancesClicked();">
                             <p class="live">Live<img class="liveImg" src="icons/liveImg.svg"></p>
                             <div class="homeText">
-                                <h2>Entrances</h2>
+                                <h2>ENTRANCES</h2>
                             </div>
                         </div>
                         <div class="homeItem" id="shuttles" @click="shuttlesClicked()">
                             <div class="homeText">
-                                <h2>Shuttles</h2>
+                                <h2>SHUTTLES</h2>
                             </div>
                         </div>
                         <div v-if="showInstallMessage" id="installContainer">
@@ -95,6 +95,164 @@
                                 <p style="margin: 6px;">Install this webapp on your device: tap &nbsp;<img src="icons/hamburgerBtn.png" style="height: 14px; width: auto; vertical-align: middle;">&nbsp; then Add to homescreen.</p>
                             </div>
                             <div class="arrow-up"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PARKING -->
+                <div v-if="page=='parking'">
+                    <img class="pageImage" src="photos/entranceMap.png">
+                    <img class="backArrow" src="icons/arrow_back.svg" @click="page='home'">
+                    <div class="contentWrapper">
+                        <div class="pageBtnWrapper">
+                            <p class="pageBtnTitle pTitle">Zion Visitor Lot</p>
+                            <p class="pageBtnText pText">Distance: {{zionParkingDistance}}</p>
+                            <svg height="20" width="300">
+                                <rect class="background" width="300" height="13" style="fill:#dbdbdb;" />
+                                <rect class="overlayLine" id="zionVisitorLine" :width="zionVisitorBar" height="13" :fill="zionVisitorSvg" >
+                                    <animate attributeName="width" from="0" :to="zionVisitorBar" dur=".75s" :fill="zionVisitorSvg" />
+                                </rect>
+                            </svg>
+                            <p class="pageBtnMiniText">Filled Yesterday: <b>{{zionFillTime}}</b></p>
+                        </div>
+                        <div class="pageBtnWrapper">
+                            <p class="pageBtnTitle pTitle">Overflow Lot</p>
+                            <p class="pageBtnText pText">Distance: {{overflowDistance}}</p>
+                            <svg height="20" width="300">
+                                <rect class="background" width="100%" height="13" style="fill:#dbdbdb;" />
+                                <rect class="overlayLine" id="zionVisitorLine" :width="overflowBar" height="13" :fill="overflowSvg" >
+                                    <animate attributeName="width" from="0" :to="overflowBar" dur=".75s" :fill="overflowSvg" />
+                                </rect>
+                            </svg>
+                            <p class="pageBtnMiniText">Filled Yesterday: <b>{{overflowFillTime}}</b></p>
+                        </div>
+                    </div>
+                    <div class="shuttleMessage">
+                        <img class="bus" src="icons/bus.svg">
+                        <div class="busTextWrapper">
+                            <p class="shuttleMsgTitle"><img class="arrowDown noMarginLeft" src="icons/arrow_down.svg">Springdale Parking<img class="arrowDown" src="icons/arrow_down.svg"></p>
+                            <p class="shuttleMsgText">Park in 1 of 3 zones below and ride the shuttle into the park for $1!</p>
+                        </div>
+                    </div>
+                    <div class="contentWrapper">
+                        <div class="pageBtnWrapper2">
+                            <p class="pageBtnTitle pTitle2">Zone A</p>
+                            <p class="pageBtnText pText2">Price: $20/day</p>
+                            <p class="pageBtnText pText2">The nearest shuttle stop is the Zion Visitor Center. This is approximately a 3 mile walk.</p>
+                        </div>
+                        <div class="pageBtnWrapper2">
+                            <p class="pageBtnTitle pTitle2">Zone B</p>
+                            <p class="pageBtnText pText2">Price: $15/day</p>
+                            <p class="pageBtnText pText2">The nearest shuttle stop is the Zion Visitor Center. This is approximately a 3 mile walk.</p>
+                        </div>
+                        <div class="pageBtnWrapper2">
+                            <p class="pageBtnTitle pTitle2">Zone C</p>
+                            <p class="pageBtnText pText2">Price: $12/day</p>
+                            <p class="pageBtnText pText2">The nearest shuttle stop is the Zion Visitor Center. This is approximately a 3 mile walk.</p>
+                        </div>
+                    </div>
+                    <div class="push"></div>
+                </div>
+
+                <!-- ENTRANCES -->
+                <div v-if="page=='entrances'">
+                    <img class="pageImage" src="photos/entranceMap.png">
+                    <img class="backArrow" src="icons/arrow_back.svg" @click="page='home'">
+                    <div class="contentWrapper">
+                        <div class="pageBtnWrapper">
+                            <img class="pageBtnImg" v-bind:src="southEntranceIcon">
+                            <div class="pageBtnTextWrapper">
+                                <p class="pageBtnTitle">South Entrance</p>
+                                <p class="pageBtnText">Vehicle Entrance</p>
+                                <p class="pageBtnText">Traffic: <b>{{southEntranceBusiness}}</b></p>
+                            </div>
+                        </div>
+                        <div class="pageBtnWrapper">
+                            <img class="pageBtnImg" v-bind:src="eastEntranceIcon">
+                            <div class="pageBtnTextWrapper">
+                                <p class="pageBtnTitle">East Entrance</p>
+                                <p class="pageBtnText">Vehicle Entrance</p>
+                                <p class="pageBtnText">Traffic: <b>{{eastEntranceBusiness}}</b></p>
+                            </div>
+                        </div>
+                        <div class="pageBtnWrapper">
+                            <img class="pageBtnImg" v-bind:src="riverEntranceIcon">
+                            <div class="pageBtnTextWrapper">
+                                <p class="pageBtnTitle">River Entrance</p>
+                                <p class="pageBtnText">Vehicle Entrance</p>
+                                <p class="pageBtnText">Traffic: <b>{{riverEntranceBusiness}}</b></p>
+                            </div>
+                        </div>
+                        <div class="pageBtnWrapper">
+                            <img class="pageBtnImg" v-bind:src="kolobEntranceIcon">
+                            <div class="pageBtnTextWrapper">
+                                <p class="pageBtnTitle">Kolob Entrance</p>
+                                <p class="pageBtnText">Vehicle Entrance</p>
+                                <p class="pageBtnText">Traffic: <b>{{kolobEntranceBusiness}}</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="push"></div>
+                </div>
+
+                <!-- SHUTTLES -->
+                <div v-if="page=='shuttles'">
+                    <img id="staticMap" src="photos/map.svg">
+                    <img class="backArrow" src="icons/arrow_back.svg" @click="page='home'">
+                    <div class="shuttleWrapper" :class="{smallShuttleWrapper : smallShuttleMessage}">
+                        <div class="shuttleHeader" @click="smallShuttleMessage = !smallShuttleMessage" >
+                            <img class="warningIcon pushRight" src="icons/warning.svg"><h3 class="shuttleHeaderText">Important Shuttle Updates</h3><img class="warningIcon" src="icons/warning.svg"><img src="icons/grayArrow.svg" class="grayArrow" :class="{flipArrow : smallShuttleMessage}">
+                        </div>
+                        <div class="contentWrapper">
+                            <div class="mainShuttleContainer">
+                                <div class="shuttlesContainer">
+                                    <div class="shuttleImgContainer"><img class="shuttleImg" src="icons/ticket.svg"></div>
+                                </div>
+                                <div class="shuttlesContainer2">
+                                    <p class="sSub">Tickets are now required for all passengers to board the shuttle. </p>
+                                    <p class="sText">This $1USD non-refundable ticket allows access to ride the shuttle into the park during a one hour block of time. Make sure to hang onto your ticket to  board the shuttle back into town!</p>
+                                </div>
+                            </div>
+                            <div class="mainShuttleContainer">
+                                <div class="shuttlesContainer">
+                                    <div class="shuttleImgContainer"><img class="shuttleImg" src="icons/qrcode.svg"></div>
+                                </div>
+                                <div class="shuttlesContainer2">
+                                    <p class="sSub">Does your shuttle ticket have a QR code?</p>
+                                    <p class="sText">Tickets with a QR code allow you to board the Zion Shuttle at the Visitor Center. If you have a shuttle ticket without a QR code, you probably have a ticket for a private shuttle company, which board at the bridge.</p>
+                                </div>
+                            </div>
+                            <div class="mainShuttleContainer">
+                                <div class="shuttlesContainer">
+                                    <div class="shuttleImgContainer"><img class="shuttleImg" src="icons/timer.svg"></div>
+                                </div>
+                                <div class="shuttlesContainer2">
+                                    <p class="sSub">Shuttles are departing about every five minutes.</p>
+                                    <p class="sText">The shuttles will aim to depart the Zion Canyon Visitor Center approximately every five minutes from 6:00 A.M. to 4:00 P.M. daily. </p>
+                                </div>
+                            </div>
+                            <div class="mainShuttleContainer">
+                                <div class="shuttlesContainer">
+                                    <div class="shuttleImgContainer"><img class="shuttleImg" src="icons/shuttle.svg"></div>
+                                </div>
+                                <div class="shuttlesContainer2">
+                                    <p class="sSub">Not all shuttle stops are currently in operation</p>
+                                    <p class="sText">Initial boarding onto the shuttle takes place at the Visitor Center and at Zion Lodge for overnight guests with shuttle tickets. Human History Museum, Canyon Junction, and Court of the Patriarchs shuttle stops are currently closed. Shuttles will NOT stop at any of these locations in either direction. </p>
+                                </div>
+                            </div>
+                            <div class="mainShuttleContainer">
+                                <div class="shuttlesContainer">
+                                    <div class="shuttleImgContainer"><img class="shuttleImg" src="icons/parking.svg"></div>
+                                </div>
+                                <div class="shuttlesContainer2">
+                                    <p class="sSub">Shuttle tickets do not guarantee parking.</p>
+                                    <p class="sText">Zion National Park often experiences parking limitations and traffic congestion. Please plan accordingly and allow time to walk from your parking spot to the Visitor Center. Paid parking options are available in Springdale, UT.</p>
+                                </div>
+                            </div>
+                            <div class="shuttleBtnContainer">
+                                <a href="https://www.nps.gov/zion/planyourvisit/zion-canyon-shuttle-tickets.htm"><div class="shuttleBtn">Learn More</div></a>
+                                <a href="https://www.recreation.gov/ticket/facility/tour/3010"><div class="shuttleBtn purchase">Purchase Tickets</div></a>
+                            </div>
                         </div>
                     </div>
                 </div>

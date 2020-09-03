@@ -22,15 +22,90 @@ body, textarea{
 }
 
 /* HOME PAGE */
+#installContainer{
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: fixed;
+    bottom: 50px;
+    background-color: #242323ee;
+    border-radius: 4px;
+    width: 98%;
+    height: 60px;
+    font-size: 14px;
+    z-index: 10000;
+    color: white;
+}
+#androidInstallContainer{
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: fixed;
+    top: 20px;
+    background-color: rgba(242, 247, 250, 0.687);
+    border-radius: 4px;
+    width: 98%;
+    height: 60px;
+    font-size: 14px;
+    z-index: 10000;
+    color: black;
+}
+.arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid rgba(242, 247, 250, 0.687);
+    transform: rotate(180deg);
+    right: 10px;
+    position: absolute;
+    top: -20px;
+}
+@media only screen and (min-width: 575px){
+    #installContainer, #androidInstallContainer{
+        text-align: center;
+    }
+}
+.arrow-down {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #242323ee;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+    bottom: -20px;
+}
+@media only screen and (min-width: 575px){
+    #installContainer{
+        top: 25px;
+        bottom: unset;
+        background-color: rgba(242, 247, 250, 0.687);
+        color: black;
+    }
+    .arrow-down{
+        transform: rotate(180deg);
+        top: -100px;
+        border-top: 20px solid rgba(242, 247, 250, 0.687);
+    }
+}
 
 #headerImg{
     position: relative;
     top: 0;
-    background-image: url("photos/homeImg.jpg");
+    background-image: url("photos/header-large.jpg");
     background-size: cover;
     height: 30vh;
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
     background-position: center;
+}
+@media only screen and (min-width: 575px){
+    #headerImg{
+        background-image: url("photos/header-small.jpg");
+        margin-top: -55px;
+    }
 }
 .headerText{
     width: 100%;
@@ -41,9 +116,10 @@ body, textarea{
     z-index: 50;
 }
 .headerText h1{
-    font-size: 32px;
+    font-size: 25px;
     font-weight: bold;
     margin: 0px;
+    margin-left: -8px;
     z-index: 50;
 }
 .headerText p{
@@ -56,14 +132,281 @@ body, textarea{
     padding: 12px;
 }
 .homeText{
-    font-size: 18px;
     color: #FFFFFF;
+    clear: both;
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
 }
 .homeItem{
     width: 100%;
-    height: 100px;
+    height: 18vh;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    position: relative;
+    cursor: pointer;
+}
+#entrances{
+    background: url("photos/zion-entrance-medium.jpg");
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
+}
+#parking{
+    background: url("photos/parking-medium.jpg");
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
+}
+#shuttles{
+    background: url("photos/shuttles-medium.jpg");
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
+}
+.live{
+    color: #FFFFFF;
+    float: right;
+    margin-right: 8px;
+}
+h2{
+    font-size: 20px;
+}
+.push{
+    height: 55px;
+}
+.push2{
+    height: 75px;
+}
+.backArrow{
+    width: 25px;
+    height: auto;
+    position: absolute;
+    top: 8px;
+    left: 8px;
 }
 
+/* PARKING */
+@keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+}
+.pText{
+    margin-bottom: 0px !important;
+    margin-left: 12px;
+    color: #99000000;
+}
+.pText2{
+    margin-bottom: 2px !important;
+    font-size: 12px;
+    color: #99000000;
+    line-height: 18px !important;
+}
+.pTitle2{
+    margin-top: 0px;
+    margin-bottom: 8px !important;
+}
+.pTitle{
+    margin-top: 12px;
+    margin-left: 12px;
+    margin-bottom: 12px !important;
+}
+svg{
+    height: 20px;
+    width: 100%;
+    margin-top: 8px;
+}
+.background {
+    width: 100%;
+}
+.shuttleMessage{
+    width: 100%;
+    height: 90px;
+    background-color: #5f8e2d;
+    margin-top: -16px;
+}
+.bus{
+    height: 50px;
+    width: auto;
+    display: inline-block;
+    margin: 16px;
+}
+.busTextWrapper{
+    width: 220px !important;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 12px;
+}
+.shuttleMsgTitle{
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px !important;
+}
+.shuttleMsgText{
+    font-size: 14px;
+    line-height: 16px;
+    color: white;
+}
+.arrowDown{
+    width: 18px;
+    height: auto;
+    vertical-align: middle;
+    margin: 0px 4px;
+}
+.noMarginLeft{
+    margin-left: 0px !important;
+}
+.pageBtnWrapper2{
+    height: 110px;
+    width: 100%;
+    border: 1px solid #a7a7a76e;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    padding: 12px;
+}
+
+/* ENTRANCES */
+.pageImage{
+    width: 100%;
+    height: 35vh;
+}
+.pageBtnWrapper{
+    height: 100px;
+    width: 100%;
+    border: 1px solid #a7a7a76e;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+.pageBtnImgWrapper{
+    width: 25%;
+}
+.pageBtnImg{
+    height: 65%;
+    width: auto;
+    vertical-align: middle;
+    margin: 16px;
+}
+.pageBtnTextWrapper{
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+    padding-top: 14px;
+}
+.pageBtnTitle{
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 12px;
+    color: #454542;
+}
+.pageBtnText{
+    font-size: 16px;
+    line-height: 12px;
+    color: #454542;
+}
+.pageBtnMiniText{
+    font-size: 12px;
+    margin-left: 12px;
+    color: #454542;
+    margin-top: -6px;
+}
+/* SHUTTLES */
+
+#staticMap{
+    width: 100%;
+    height: auto;
+}
+.shuttleHeader{
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+.grayArrow, .warningIcon{
+    width: 20px;
+    height: auto;
+    display: inline-block;
+    margin: 0px 3px;
+    background: transparent !important;
+    vertical-align: middle;
+}
+.grayArrow{
+    width: 25px;
+    margin-left: -3px;
+}
+.shuttleHeaderText{
+    display: inline-block;
+    font-size: 18px;
+    line-height: 25px;
+    vertical-align: middle;
+}
+.shuttleWrapper{
+    width: 100%;
+    height: 350px;
+    position: fixed;
+    bottom: 56px;
+    z-index: 1000;
+    background-color: white;
+    overflow: scroll;
+    border-bottom: 1px solid #a7a7a76e;
+}
+.mainShuttleContainer{
+    position: relative;
+    margin-top: 16px;
+}
+.shuttlesContainer{
+    width: 60px;
+    display: inline-block;
+}
+.shuttleImg{
+    width: 50px;
+    height: auto;
+    margin: 0 auto;
+    position: absolute;
+    top: 0px;
+}
+.shuttlesContainer2{
+    width: 75%;
+    display: inline-block;
+}
+.sText{
+    font-size: 14px;
+    line-height: 16px;
+}
+.sSub{
+    font-size: 14px;
+    font-weight: 600;
+    margin: 16px 0px;
+    line-height: 16px;
+    margin-top: 0px;
+}
+.smallShuttleWrapper{
+    height: 30px;
+    overflow: none;
+}
+.flipArrow{
+    transform: rotate(180deg);
+}
+.shuttleBtnContainer{
+    text-align: center;
+}
+.shuttleBtn{
+    height: 48px;
+    width: 130px;
+    text-align: center;
+    line-height: 48px;
+    background-color: #a6a6a6;
+    font-size: 14px;
+    color: white;
+    border-radius: 4px;
+    margin: 7px;
+    display: inline-block;
+}
+.purchase{
+    background-color: #28430A;
+}
 
 /* bottom navigation tabs */
 .bottomNavBar {
