@@ -220,7 +220,6 @@ var app = new Vue({
                 }
                 this.zionVisitorBar = this.zionVisitorStat + "%";
                 this.overflowBar = this.overflowStat + "%";
-                console.log(this.zionVisitorBar, this.overflowBar);
             }).catch(error => {
                 console.log("Could not load Zion Parking Stats", error);
             });

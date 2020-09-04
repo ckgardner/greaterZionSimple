@@ -12,6 +12,8 @@ html, body{
     margin: 0;
     padding: 0;
     min-height: 100%;
+    overflow-x: hidden;
+    touch-action: manipulation;
 }
 body, textarea{
     font-family: 'myRoboto';
@@ -101,12 +103,6 @@ body, textarea{
     box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
     background-position: center;
 }
-@media only screen and (min-width: 575px){
-    #headerImg{
-        background-image: url("photos/header-small.jpg");
-        margin-top: -55px;
-    }
-}
 .headerText{
     width: 100%;
     margin: 20px;
@@ -177,6 +173,9 @@ h2{
 }
 .push2{
     height: 75px;
+}
+.pushSmall{
+    height: 35px;
 }
 .backArrow{
     width: 25px;
@@ -407,6 +406,27 @@ svg{
 .purchase{
     background-color: #28430A;
 }
+/* MAP */
+.circleBtn{
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    cursor: pointer;
+}
+.download{
+    bottom: -30px;
+    right: 70px;
+}
+#staticMapTab{
+    width: 100%;
+    height: 100%;
+    margin-top: 25px;
+}
+#staticMapDownload{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
 
 /* bottom navigation tabs */
 .bottomNavBar {
@@ -419,4 +439,19 @@ svg{
 }
 .mapTabFocus {
     border-bottom: solid 2px #28430A;
+}
+
+@media only screen and (min-width: 575px){
+    #headerImg{
+        background-image: url("photos/header-small.jpg");
+    }
+    #entrances{
+        background: url("photos/zion-entrance-small.jpg");
+    }
+    #parking{
+        background: url("photos/parking-small.jpg");
+    }
+    #shuttles{
+        background: url("photos/shuttles-small.jpg");
+    }
 }
