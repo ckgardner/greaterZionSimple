@@ -39,6 +39,24 @@ var app = new Vue({
         overflowBar: '',
 
         smallShuttleMessage: false,
+
+        parkingMap: 'mapbox/visitor_gray.svg',
+        visitorMap: 'mapbox/visitor_gray.svg',
+        overflowMap: 'mapbox/overflow_gray.svg',
+        visitor_selected: true,
+        overflow_selected: false,
+        zoneA_selected: false,
+        zoneB_selected: false,
+        zoneC_selected: false,
+        entranceMap: 'mapbox/south_gray.svg',
+        southMap: 'mapbox/south_gray.svg',
+        eastMap: 'mapbox/east_gray.svg',
+        riverMap: 'mapbox/river_gray.svg',
+        kolobMap: 'mapbox/kolob_gray.svg',
+        south_selected: false,
+        east_selected: false,
+        river_selected: false,
+        kolob_selected: false,
     },
     created: function (){
         this.PWA_popup();
@@ -115,12 +133,15 @@ var app = new Vue({
                 if(SE < 33){
                     this.southEntranceBusiness = "Not too busy";
                     this.southEntranceIcon = "icons/entrance_low.svg";
+                    this.southMap = 'mapbox/south_green.svg';
                 }else if(SE < 66){
                     this.southEntranceBusiness = "A little busy";
                     this.southEntranceIcon = "icons/entrance_moderate.svg";
+                    this.southMap = 'mapbox/south_yellow.svg';
                 }else{
                     this.southEntranceBusiness = "As busy as it gets";
                     this.southEntranceIcon = "icons/entrance_high.svg";
+                    this.southMap = 'mapbox/south_red.svg';
                 }
             }).catch(error =>{
                 console.log("Could not load South Entrance", error);
@@ -130,12 +151,15 @@ var app = new Vue({
                 if(E < 33){
                     this.eastEntranceBusiness = "Not too busy";
                     this.eastEntranceIcon = "icons/entrance_low.svg";
+                    this.eastMap = 'mapbox/east_green.svg';
                 }else if(E < 66){
                     this.eastEntranceBusiness = "A little busy";
                     this.eastEntranceIcon = "icons/entrance_moderate.svg";
+                    this.eastMap = 'mapbox/east_yellow.svg';
                 }else{
                     this.eastEntranceBusiness = "As busy as it gets";
                     this.eastEntranceIcon = "icons/entrance_high.svg";
+                    this.eastMap = 'mapbox/east_red.svg';
                 }
             }).catch(error =>{
                 console.log("Could not load East Entrance", error);
@@ -145,18 +169,22 @@ var app = new Vue({
                 if(R < 33){
                     this.riverEntranceBusiness = "Not too busy";
                     this.riverEntranceIcon = "icons/entrance_low.svg";
+                    this.riverMap = 'mapbox/river_green.svg';
                 }else if(R < 66){
                     this.riverEntranceBusiness = "A little busy";
                     this.riverEntranceIcon = "icons/entrance_moderate.svg";
+                    this.riverMap = 'mapbox/river_yellow.svg';
                 }else{
                     this.riverEntranceBusiness = "As busy as it gets";
                     this.riverEntranceIcon = "icons/entrance_high.svg";
+                    this.riverMap = 'mapbox/river_red.svg';
                 }
             }).catch(error =>{
                 console.log("Could not load River Entrance", error);
             });
             this.kolobEntranceIcon = "icons/entrance_low.svg";
             this.kolobEntranceBusiness = "Not too busy";
+            this.kolobMap = 'mapbox/kolob_green.svg';
             
         },
         splitTime: function(time){
@@ -202,27 +230,72 @@ var app = new Vue({
 
                 if (this.zionVisitorStat < 33){
                     this.zionVisitorSvg = '#5F8F2C';
+                    this.visitorMap = 'mapbox/visitor_green.svg';
                 }
                 if (this.zionVisitorStat < 66){
                     this.zionVisitorSvg = '#ffcd31';
+                    this.visitorMap = 'mapbox/visitor_yellow.svg';
                 }
                 else{
                     this.zionVisitorSvg = '#ef6565';
+                    this.visitorMap = 'mapbox/visitor_red.svg';
                 }
                 if (this.overflowStat < 33){
                     this.overflowSvg = '#5F8F2C';
+                    this.overflowMap = 'mapbox/overflow_green.svg';
                 }
                 if (this.overflowStat < 66){
                     this.overflowSvg = '#ffcd31';
+                    this.overflowMap = 'mapbox/overflow_yellow.svg';
                 }
                 else{
                     this.overflowSvg = '#ef6565';
+                    this.overflowMap = 'mapbox/overflow_red.svg';
                 }
                 this.zionVisitorBar = this.zionVisitorStat + "%";
                 this.overflowBar = this.overflowStat + "%";
             }).catch(error => {
                 console.log("Could not load Zion Parking Stats", error);
             });
+        },
+        parkingBtn: function(img){
+            var map;
+            this.visitor_selected = this.overflow_selected = this.zoneA_selected = this.zoneB_selected = this.zoneC_selected = false;
+            if (img == 'visitor'){
+                map = this.visitorMap;
+                this.visitor_selected = true;
+            }else if(img == 'overflow'){
+                map = this.overflowMap;
+                this.overflow_selected = true;
+            }else if(img == 'zoneA'){
+                map = 'mapbox/zone_a.svg';
+                this.zoneA_selected = true;
+            }else if(img == 'zoneB'){
+                map = 'mapbox/zone_b.svg';
+                this.zoneB_selected = true;
+            }else if(img == 'zoneC'){
+                map = 'mapbox/zone_c.svg';
+                this.zoneC_selected = true;
+            }
+            this.parkingMap = map;
+        },
+        entranceBtn: function(img){
+            var map;
+            this.south_selected = this.east_selected = this.river_selected = this.kolob_selected = false;
+            if (img == 'south'){
+                map = this.southMap;
+                this.south_selected = true;
+            }else if(img == 'east'){
+                map = this.eastMap;
+                this.east_selected = true;
+            }else if(img == 'river'){
+                map = this.riverMap;
+                this.river_selected = true;
+            }else if(img == 'kolob'){
+                map = this.kolobMap;
+                this.kolob_selected = true;
+            }
+            this.entranceMap = map;
         },
         headerClicked: function(){
             this.message_show = false;

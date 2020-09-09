@@ -25,7 +25,7 @@
     <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Greater Zion">
-    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/pwaIcons/icon_828x1792.png"/>
     <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/pwaIcons/icon_1242x2688.png"/>
     <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/pwaIcons/icon_1125x2436.png"/>
@@ -53,6 +53,7 @@
                     <div id="headerImg">
                         <div class="headerText">
                             <h1>GREATER ZION REGION</h1>
+                            <h2>Your source for current conditions in Zion National Park</h2>
                         </div>
                     </div>
                     <div class="contentWrapper">
@@ -96,10 +97,12 @@
 
                 <!-- PARKING -->
                 <div v-if="page=='parking'">
-                    <img class="pageImage" src="photos/entranceMap.png">
+                    <div class="pageImgContainer">
+                        <img class="pageImage" :src="parkingMap">
+                    </div>
                     <img class="backArrow" src="icons/arrow_back.svg" @click="page='home'">
                     <div class="contentWrapper">
-                        <div class="pageBtnWrapper">
+                        <div class="pageBtnWrapper" :class="{pageBtnFocus : visitor_selected}" @click="parkingBtn('visitor')">
                             <p class="pageBtnTitle pTitle">Zion Visitor Lot</p>
                             <p class="pageBtnText pText">Distance: {{zionParkingDistance}}</p>
                             <svg height="20" width="300">
@@ -110,7 +113,7 @@
                             </svg>
                             <p class="pageBtnMiniText">Filled Yesterday: <b>{{zionFillTime}}</b></p>
                         </div>
-                        <div class="pageBtnWrapper">
+                        <div class="pageBtnWrapper" :class="{pageBtnFocus : overflow_selected}" @click="parkingBtn('overflow')">
                             <p class="pageBtnTitle pTitle">Overflow Lot</p>
                             <p class="pageBtnText pText">Distance: {{overflowDistance}}</p>
                             <svg height="20" width="300">
@@ -130,17 +133,17 @@
                         </div>
                     </div>
                     <div class="contentWrapper">
-                        <div class="pageBtnWrapper2">
+                        <div class="pageBtnWrapper2" :class="{pageBtnFocus : zoneA_selected}" @click="parkingBtn('zoneA')">
                             <p class="pageBtnTitle pTitle2">Zone A</p>
                             <p class="pageBtnText pText2">Price: $20/day</p>
                             <p class="pageBtnText pText2">The nearest shuttle stop is the Zion Visitor Center. This is approximately a 3 mile walk.</p>
                         </div>
-                        <div class="pageBtnWrapper2">
+                        <div class="pageBtnWrapper2" :class="{pageBtnFocus : zoneB_selected}" @click="parkingBtn('zoneB')">
                             <p class="pageBtnTitle pTitle2">Zone B</p>
                             <p class="pageBtnText pText2">Price: $15/day</p>
                             <p class="pageBtnText pText2">The nearest shuttle stop is the Zion Visitor Center. This is approximately a 3 mile walk.</p>
                         </div>
-                        <div class="pageBtnWrapper2">
+                        <div class="pageBtnWrapper2" :class="{pageBtnFocus : zoneC_selected}" @click="parkingBtn('zoneC')">
                             <p class="pageBtnTitle pTitle2">Zone C</p>
                             <p class="pageBtnText pText2">Price: $12/day</p>
                             <p class="pageBtnText pText2">The nearest shuttle stop is the Zion Visitor Center. This is approximately a 3 mile walk.</p>
@@ -151,10 +154,12 @@
 
                 <!-- ENTRANCES -->
                 <div v-if="page=='entrances'">
-                    <img class="pageImage" src="photos/entranceMap.png">
+                    <div class="pageImgContainer">
+                        <img class="pageImage" :src="entranceMap">
+                    </div>
                     <img class="backArrow" src="icons/arrow_back.svg" @click="page='home'">
                     <div class="contentWrapper">
-                        <div class="pageBtnWrapper">
+                        <div class="pageBtnWrapper" :class="{pageBtnFocus : south_selected}" @click="entranceBtn('south')">
                             <img class="pageBtnImg" v-bind:src="southEntranceIcon">
                             <div class="pageBtnTextWrapper">
                                 <p class="pageBtnTitle">South Entrance</p>
@@ -162,7 +167,7 @@
                                 <p class="pageBtnText">Traffic: <b>{{southEntranceBusiness}}</b></p>
                             </div>
                         </div>
-                        <div class="pageBtnWrapper">
+                        <div class="pageBtnWrapper" :class="{pageBtnFocus : east_selected}" @click="entranceBtn('east')">
                             <img class="pageBtnImg" v-bind:src="eastEntranceIcon">
                             <div class="pageBtnTextWrapper">
                                 <p class="pageBtnTitle">East Entrance</p>
@@ -170,7 +175,7 @@
                                 <p class="pageBtnText">Traffic: <b>{{eastEntranceBusiness}}</b></p>
                             </div>
                         </div>
-                        <div class="pageBtnWrapper">
+                        <div class="pageBtnWrapper" :class="{pageBtnFocus : river_selected}" @click="entranceBtn('river')">
                             <img class="pageBtnImg" v-bind:src="riverEntranceIcon">
                             <div class="pageBtnTextWrapper">
                                 <p class="pageBtnTitle">River Entrance</p>
@@ -178,7 +183,7 @@
                                 <p class="pageBtnText">Traffic: <b>{{riverEntranceBusiness}}</b></p>
                             </div>
                         </div>
-                        <div class="pageBtnWrapper">
+                        <div class="pageBtnWrapper" :class="{pageBtnFocus : kolob_selected}" @click="entranceBtn('kolob')">
                             <img class="pageBtnImg" v-bind:src="kolobEntranceIcon">
                             <div class="pageBtnTextWrapper">
                                 <p class="pageBtnTitle">Kolob Entrance</p>
