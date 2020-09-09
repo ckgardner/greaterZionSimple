@@ -40,19 +40,19 @@ var app = new Vue({
 
         smallShuttleMessage: false,
 
-        parkingMap: 'mapbox/visitor_gray.svg',
-        visitorMap: 'mapbox/visitor_gray.svg',
-        overflowMap: 'mapbox/overflow_gray.svg',
+        parkingMap: 'mapbox/visitor_gray.jpg',
+        visitorMap: 'mapbox/visitor_gray.jpg',
+        overflowMap: 'mapbox/overflow_gray.jpg',
         visitor_selected: true,
         overflow_selected: false,
         zoneA_selected: false,
         zoneB_selected: false,
         zoneC_selected: false,
-        entranceMap: 'mapbox/south_gray.svg',
-        southMap: 'mapbox/south_gray.svg',
-        eastMap: 'mapbox/east_gray.svg',
-        riverMap: 'mapbox/river_gray.svg',
-        kolobMap: 'mapbox/kolob_gray.svg',
+        entranceMap: 'mapbox/south_gray.jpg',
+        southMap: 'mapbox/south_gray.jpg',
+        eastMap: 'mapbox/east_gray.jpg',
+        riverMap: 'mapbox/river_gray.jpg',
+        kolobMap: 'mapbox/kolob_gray.jpg',
         south_selected: false,
         east_selected: false,
         river_selected: false,
@@ -133,15 +133,15 @@ var app = new Vue({
                 if(SE < 33){
                     this.southEntranceBusiness = "Not too busy";
                     this.southEntranceIcon = "icons/entrance_low.svg";
-                    this.southMap = 'mapbox/south_green.svg';
+                    this.southMap = 'mapbox/south_green.jpg';
                 }else if(SE < 66){
                     this.southEntranceBusiness = "A little busy";
                     this.southEntranceIcon = "icons/entrance_moderate.svg";
-                    this.southMap = 'mapbox/south_yellow.svg';
+                    this.southMap = 'mapbox/south_yellow.jpg';
                 }else{
                     this.southEntranceBusiness = "As busy as it gets";
                     this.southEntranceIcon = "icons/entrance_high.svg";
-                    this.southMap = 'mapbox/south_red.svg';
+                    this.southMap = 'mapbox/south_red.jpg';
                 }
             }).catch(error =>{
                 console.log("Could not load South Entrance", error);
@@ -151,15 +151,15 @@ var app = new Vue({
                 if(E < 33){
                     this.eastEntranceBusiness = "Not too busy";
                     this.eastEntranceIcon = "icons/entrance_low.svg";
-                    this.eastMap = 'mapbox/east_green.svg';
+                    this.eastMap = 'mapbox/east_green.jpg';
                 }else if(E < 66){
                     this.eastEntranceBusiness = "A little busy";
                     this.eastEntranceIcon = "icons/entrance_moderate.svg";
-                    this.eastMap = 'mapbox/east_yellow.svg';
+                    this.eastMap = 'mapbox/east_yellow.jpg';
                 }else{
                     this.eastEntranceBusiness = "As busy as it gets";
                     this.eastEntranceIcon = "icons/entrance_high.svg";
-                    this.eastMap = 'mapbox/east_red.svg';
+                    this.eastMap = 'mapbox/east_red.jpg';
                 }
             }).catch(error =>{
                 console.log("Could not load East Entrance", error);
@@ -169,22 +169,22 @@ var app = new Vue({
                 if(R < 33){
                     this.riverEntranceBusiness = "Not too busy";
                     this.riverEntranceIcon = "icons/entrance_low.svg";
-                    this.riverMap = 'mapbox/river_green.svg';
+                    this.riverMap = 'mapbox/river_green.jpg';
                 }else if(R < 66){
                     this.riverEntranceBusiness = "A little busy";
                     this.riverEntranceIcon = "icons/entrance_moderate.svg";
-                    this.riverMap = 'mapbox/river_yellow.svg';
+                    this.riverMap = 'mapbox/river_yellow.jpg';
                 }else{
                     this.riverEntranceBusiness = "As busy as it gets";
                     this.riverEntranceIcon = "icons/entrance_high.svg";
-                    this.riverMap = 'mapbox/river_red.svg';
+                    this.riverMap = 'mapbox/river_red.jpg';
                 }
             }).catch(error =>{
                 console.log("Could not load River Entrance", error);
             });
             this.kolobEntranceIcon = "icons/entrance_low.svg";
             this.kolobEntranceBusiness = "Not too busy";
-            this.kolobMap = 'mapbox/kolob_green.svg';
+            this.kolobMap = 'mapbox/kolob_green.jpg';
             
         },
         splitTime: function(time){
@@ -230,27 +230,27 @@ var app = new Vue({
 
                 if (this.zionVisitorStat < 33){
                     this.zionVisitorSvg = '#5F8F2C';
-                    this.visitorMap = 'mapbox/visitor_green.svg';
+                    this.visitorMap = 'mapbox/visitor_green.jpg';
                 }
                 if (this.zionVisitorStat < 66){
                     this.zionVisitorSvg = '#ffcd31';
-                    this.visitorMap = 'mapbox/visitor_yellow.svg';
+                    this.visitorMap = 'mapbox/visitor_yellow.jpg';
                 }
                 else{
                     this.zionVisitorSvg = '#ef6565';
-                    this.visitorMap = 'mapbox/visitor_red.svg';
+                    this.visitorMap = 'mapbox/visitor_red.jpg';
                 }
                 if (this.overflowStat < 33){
                     this.overflowSvg = '#5F8F2C';
-                    this.overflowMap = 'mapbox/overflow_green.svg';
+                    this.overflowMap = 'mapbox/overflow_green.jpg';
                 }
                 if (this.overflowStat < 66){
                     this.overflowSvg = '#ffcd31';
-                    this.overflowMap = 'mapbox/overflow_yellow.svg';
+                    this.overflowMap = 'mapbox/overflow_yellow.jpg';
                 }
                 else{
                     this.overflowSvg = '#ef6565';
-                    this.overflowMap = 'mapbox/overflow_red.svg';
+                    this.overflowMap = 'mapbox/overflow_red.jpg';
                 }
                 this.zionVisitorBar = this.zionVisitorStat + "%";
                 this.overflowBar = this.overflowStat + "%";
@@ -268,13 +268,13 @@ var app = new Vue({
                 map = this.overflowMap;
                 this.overflow_selected = true;
             }else if(img == 'zoneA'){
-                map = 'mapbox/zone_a.svg';
+                map = 'mapbox/zone_a.jpg';
                 this.zoneA_selected = true;
             }else if(img == 'zoneB'){
-                map = 'mapbox/zone_b.svg';
+                map = 'mapbox/zone_b.jpg';
                 this.zoneB_selected = true;
             }else if(img == 'zoneC'){
-                map = 'mapbox/zone_c.svg';
+                map = 'mapbox/zone_c.jpg';
                 this.zoneC_selected = true;
             }
             this.parkingMap = map;
