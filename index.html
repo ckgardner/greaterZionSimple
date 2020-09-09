@@ -197,7 +197,9 @@
 
                 <!-- SHUTTLES -->
                 <div v-if="page=='shuttles'">
-                    <img id="staticMap" src="photos/map.svg">
+                    <div class="staticMapContainer" :class="{smallMapContainer : !smallShuttleMessage}">
+                        <img id="staticMap" src="photos/map.svg">
+                    </div>
                     <img class="backArrow" src="icons/arrow_back.svg" @click="page='home'">
                     <div class="shuttleWrapper" :class="{smallShuttleWrapper : smallShuttleMessage}">
                         <div class="shuttleHeader" @click="smallShuttleMessage = !smallShuttleMessage" >

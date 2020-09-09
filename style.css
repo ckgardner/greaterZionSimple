@@ -287,6 +287,8 @@ svg{
 .pageImage{
     width: 110%;
     height: auto;
+    touch-action: auto;
+    touch-action: double-tap-zoom;
 }
 .pageBtnWrapper{
     height: 100px;
@@ -333,6 +335,14 @@ svg{
     width: 100%;
     height: auto;
 }
+.staticMapContainer{
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+}
+.smallMapContainer{
+    height: 35vh;
+}
 .shuttleHeader{
     width: 100%;
     height: 30px;
@@ -359,7 +369,7 @@ svg{
 }
 .shuttleWrapper{
     width: 100%;
-    height: 350px;
+    height: 60%;
     position: fixed;
     bottom: 56px;
     z-index: 1000;

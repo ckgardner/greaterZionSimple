@@ -185,7 +185,7 @@ var app = new Vue({
             this.kolobEntranceIcon = "icons/entrance_low.svg";
             this.kolobEntranceBusiness = "Not too busy";
             this.kolobMap = 'mapbox/kolob_green.jpg';
-            
+            this.entranceMap = this.visitorMap;
         },
         splitTime: function(time){
             var p1 = time.split(':')[0];
@@ -254,6 +254,7 @@ var app = new Vue({
                 }
                 this.zionVisitorBar = this.zionVisitorStat + "%";
                 this.overflowBar = this.overflowStat + "%";
+                this.parkingMap = this.visitorMap;
             }).catch(error => {
                 console.log("Could not load Zion Parking Stats", error);
             });
