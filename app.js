@@ -10,7 +10,7 @@ var app = new Vue({
     el: '#app',
     vuetify: new Vuetify(),
     data: {
-        page: 'home', // home, entrances, parking, shuttles, map
+        page: 'download', // home, entrances, parking, shuttles, map
         homeImg: 'icons/home_green.svg',
         mapImg: 'icons/map_grey.svg',
         home_selected: true,
@@ -59,11 +59,31 @@ var app = new Vue({
         kolob_selected: false,
     },
     created: function (){
-        this.PWA_popup();
+        this.takeToAppStore();
+        //this.PWA_popup();
         this.loadEntrances();
         this.loadParking();
     },
     methods: {
+        takeToAppStore: function(){
+            function isIos() {
+                return [
+                  'iPad Simulator',
+                  'iPhone Simulator',
+                  'iPod Simulator',
+                  'iPad',
+                  'iPhone',
+                  'iPod'
+                ].includes(navigator.platform)
+                // iPad on iOS 13 detection
+                || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+            }
+            if(isIos()){
+                window.location.href = "https://apps.apple.com/us/app/id1499911624";
+            }else{
+                window.location.href = "https://play.google.com/store/apps/details?id=edu.dixietech.parksplus.greaterzion";
+            }
+        },
         PWA_popup: function(){
             const isIos = () => {
                 const userAgent = window.navigator.userAgent.toLowerCase();

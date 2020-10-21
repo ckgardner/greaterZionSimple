@@ -23,6 +23,32 @@ body, textarea{
     position: relative;
 }
 
+/* Download */
+.appStoreImgHolder{
+    text-align: center;
+    background-color: #F2461D;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.appStoreImg{
+    width: 100%;
+}
+.appBtnWrapper{
+    width: 100%;
+    position: absolute;
+    top: 25%;
+}
+.appBtn{
+    width: 40%;
+    height: auto;
+    cursor: pointer;
+}
+.iosBtn{
+    left: 180px;
+}
+
+
 /* HOME PAGE */
 #installContainer{
     left: 0;
@@ -223,9 +249,9 @@ h2{
     margin-bottom: 12px !important;
 }
 svg{
-    height: 20px;
+    height: 25px;
     width: 100%;
-    margin-top: 8px;
+    margin-top: 16px;
 }
 .background {
     width: 100%;

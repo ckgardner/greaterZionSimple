@@ -48,6 +48,13 @@
     <div id="app">
         <v-app>
             <v-main>
+                <div class="appStoreImgHolder" v-if="page=='download'">
+                    <img class="appStoreImg" src="greater zion background.png">
+                    <div class="appBtnWrapper">
+                        <a href="https://apps.apple.com/us/app/id1499911624"><img class="appBtn" src="splash screen part-69-2.png"></img></a>
+                        <a href="https://play.google.com/store/apps/details?id=edu.dixietech.parksplus.greaterzion"><img class="appBtn iosBtn" src="splash screen part-70-2.png"></a>
+                    </div>
+                </div>
                 <!-- HOME -->
                 <div v-if="page=='home'" @click="showInstallMessage=false">
                     <div id="headerImg">
@@ -111,7 +118,6 @@
                                     <animate attributeName="width" from="0" :to="zionVisitorBar" dur=".75s" :fill="zionVisitorSvg" />
                                 </rect>
                             </svg>
-                            <p class="pageBtnMiniText">Filled Yesterday: <b>{{zionFillTime}}</b></p>
                         </div>
                         <div class="pageBtnWrapper" :class="{pageBtnFocus : overflow_selected}" @click="parkingBtn('overflow')">
                             <p class="pageBtnTitle pTitle">Overflow Lot</p>
@@ -122,7 +128,6 @@
                                     <animate attributeName="width" from="0" :to="overflowBar" dur=".75s" :fill="overflowSvg" />
                                 </rect>
                             </svg>
-                            <p class="pageBtnMiniText">Filled Yesterday: <b>{{overflowFillTime}}</b></p>
                         </div>
                     </div>
                     <div class="shuttleMessage">
@@ -268,7 +273,7 @@
                 </div>
 
                 <!-- BOTTOM NAV -->
-                <div>
+                <!--<div>
                     <v-app-bar class="bottomNavBar">
                         <v-btn text width="50%" height="55px" tile :class="{homeTabFocus: home_selected}" @click="page='home'; bottomNavImg('home');">
                             <div >
@@ -284,7 +289,7 @@
                             </div>
                         </v-btn>
                     </v-app-bar>
-                </div>
+                </div> -->
             </v-main>
         </v-app>
     </div>
